@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: backstage
-          image: 024848484634.dkr.ecr.eu-west-1.amazonaws.com/tom-wakhungu/backstage:1.0.14
+          image: 024848484634.dkr.ecr.eu-west-1.amazonaws.com/tom-wakhungu/backstage:1.0.15
           imagePullPolicy: Always
           ports:
             - name: http
