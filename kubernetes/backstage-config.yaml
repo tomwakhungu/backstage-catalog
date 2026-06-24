@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: backstage-config
+  namespace: backstage
+data:
+  app-config.production.yaml: |
+    app:
+      baseUrl: http://localhost:7007
+
+    backend:
+      baseUrl: http://localhost:7007
+      listen: ':7007'
+      database:
+        client: pg
+        connection:
+          host: ${POSTGRES_HOST}
+          port: 5432
+          user: ${POSTGRES_USER}
+          password: ${POSTGRES_PASSWORD}
+
+    auth:
+      environment: development
+      providers:
+        guest:
+          dangerouslyAllowOutsideDevelopment: true
+
+    catalog:
+      locations:
+        - type: file
+          target: ./examples/entities.yaml
+        - type: file
+          target: ./examples/template/template.yaml
+          rules:
+            - allow: [Template]
+        - type: file
+          target: ./examples/org.yaml
+          rules:
+            - allow: [User, Group]
